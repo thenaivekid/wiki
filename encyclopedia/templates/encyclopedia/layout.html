@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, iniital-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'encyclopedia/styles.css' %}">
+        <title>Encyclopedia</title>
+    </head>
+    <body>
+        <div id="nav">
+            <a href="{% url 'index' %}">
+                <h2>Encyclopedia</h2>
+            </a>
+           
+            <form class="search" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input type="search" name="keyword" placeholder="Search Encyclopedia">
+                <input type="submit" value="Search">
+            </form>
+            <div>
+                <a href="{% url 'index' %}">Home</a>
+            </div>
+            <div>
+                <a href="{% url 'new_page' %}">Create New Page</a>
+            </div>
+            <div>
+                <a href="{% url 'random_page' %}">Random Page</a>
+            </div>
+        </div>
+        <div id="content">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+
+</html>
